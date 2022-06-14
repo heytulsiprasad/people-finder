@@ -8,10 +8,16 @@ const initialState = {
 
 const peopleReducer = (state = initialState, action) => {
   switch (action.type) {
-    case aTypes.FETCH_ALL_USERS:
+    case aTypes.LOAD_ALL_USERS:
       return {
         ...state,
-        allUsers: [...action.payload],
+        allUsers: [...action.payload.users],
+        totalCount: action.payload.users.length,
+      };
+    case aTypes.LOAD_SINGLE_USER:
+      return {
+        ...state,
+        currentUser: action.payload.user,
       };
     default:
       return state;
