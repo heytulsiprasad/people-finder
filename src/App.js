@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import './App.css';
 import AllUsers from './components/AllUsers';
@@ -31,16 +32,18 @@ const App = (props) => {
   return (
     <div className="main">
       <CurrentUser />
-      <AllUsers totalCount={props.totalCount} />
+      <AllUsers />
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    totalCount: state.people.totalCount,
-  };
+App.propTypes = {
+  totalCount: PropTypes.number.isRequired,
+  loadAllUsers: PropTypes.func.isRequired,
+  setLoaderState: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = () => {};
 
 const mapDispatchToProps = (dispatch) => {
   return {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Add prop types
@@ -36,6 +37,12 @@ const AllUsers = (props) => {
       ))}
     </div>
   );
+};
+
+AllUsers.propTypes = {
+  totalCount: PropTypes.number.isRequired,
+  setLoaderState: PropTypes.func.isRequired,
+  loadSingleUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
