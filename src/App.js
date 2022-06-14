@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import './App.css';
 import AllUsers from './components/AllUsers';
 import CurrentUser from './components/CurrentUser';
-import { loadAllUsers } from './actions/peopleActions';
+import { loadAllUsers, setLoaderState } from './actions/peopleActions';
 
 const App = (props) => {
   useEffect(() => {
     const getUsers = async () => {
+      props.setLoaderState(true);
+
       const response = await fetch('https://reqres.in/api/users');
 
       // Parse response as JSON
@@ -43,6 +45,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadAllUsers: (users) => dispatch(loadAllUsers(users)),
+    setLoaderState: (state) => dispatch(setLoaderState(state)),
   };
 };
 

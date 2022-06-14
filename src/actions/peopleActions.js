@@ -13,3 +13,10 @@ export const loadSingleUser = (user) => {
     payload: { user },
   };
 };
+
+export const setLoaderState = (state) => {
+  return {
+    type: aTypes.SET_LOADER_STATE,
+    payload: state,
+  };
+};

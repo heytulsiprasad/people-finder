@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Add prop types
-import { loadSingleUser } from '../actions/peopleActions';
+import { loadSingleUser, setLoaderState } from '../actions/peopleActions';
 
 const AllUsers = (props) => {
   const buttonPressHandler = async (index) => {
+    props.setLoaderState(true);
+
     const response = await (
       await fetch(`https://reqres.in/api/users/${index}`)
     ).json();
@@ -20,7 +22,17 @@ const AllUsers = (props) => {
   return (
     <div style={{ marginTop: '2rem' }}>
       {Array.from({ length: props.totalCount }, (_, i) => (
-        <button onClick={() => buttonPressHandler(i + 1)}>{i + 1}</button>
+        <button
+          style={{
+            padding: '1rem',
+            background: 'none',
+            marginRight: '1rem',
+            cursor: 'pointer',
+          }}
+          onClick={() => buttonPressHandler(i + 1)}
+        >
+          {i + 1}
+        </button>
       ))}
     </div>
   );
@@ -34,6 +46,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setLoaderState: (state) => dispatch(setLoaderState(state)),
     loadSingleUser: (user) => dispatch(loadSingleUser(user)),
   };
 };

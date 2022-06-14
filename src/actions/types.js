@@ -1,2 +1,3 @@
 export const LOAD_ALL_USERS = 'LOAD_ALL_USERS';
 export const LOAD_SINGLE_USER = 'LOAD_SINGLE_USER';
+export const SET_LOADER_STATE = 'SET_LOADER_STATE';
